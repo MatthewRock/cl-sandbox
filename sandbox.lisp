@@ -56,3 +56,21 @@ and deleting the sandbox package.."
           'success)
         'fail))
 
+  (defun pause ()
+    "Pause sandbox session, leaving pacakge for future use."
+    (or (cl:when (cl:and sandbox (cl:equal cl:*package* sandbox))
+          (cl:setf cl:*package* previous-package)
+          'success)
+        'fail))
+
+  (defun resume ()
+    "Resume paused sandbox session."
+    (or (cl:when (cl:and sandbox (cl:not (cl:equal cl:*package* sandbox)))
+          (cl:setf cl:*package* sandbox)
+          'success)
+        'fail))
+
+  (defun change-name (new-name)
+    "Change name of sandbox package to NEW-NAME."
+    (cl:assert (cl:typep new-name 'string))
+    (cl:setf sandbox-name new-name)))

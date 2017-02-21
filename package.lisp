@@ -26,4 +26,6 @@
   (:use #:cl)
   (:export start
            exit
-           name-change))
+           name-change
+           pause
+           resume))
