@@ -1,5 +1,4 @@
-;;;; sandbox.asd
-;; Copyright (c) 2015 Mateusz Malisz
+;; Copyright (c) 2015-2016 Mateusz Malisz
 
 
 ;; Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,7 +26,7 @@
   :description "Utility package for creating safe experimental environment."
   :author "Mateusz Malisz <maliszmat@gmail.com>"
   :license "MIT"
-  :version "0.0.2"
+  :version "0.0.3"
   :serial t
   :components ((:file "package")
                (:file "sandbox")))

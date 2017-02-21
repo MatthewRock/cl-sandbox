@@ -1,6 +1,4 @@
-;;;; sandbox.lisp
-;; Copyright (c) 2015 Mateusz Malisz
-
+;; Copyright (c) 2015-2016 Mateusz Malisz
 
 ;; Permission is hereby granted, free of charge, to any person obtaining a copy
 ;; of this software and associated documentation files (the "Software"), to deal
@@ -22,23 +20,39 @@
 ;; OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ;; THE SOFTWARE.
 
+;; tl;dr: MIT. Do whatever you want.
+
 (in-package #:sandbox)
 
 (let ((sandbox nil)
       (previous-package cl:*package*)
-      (sandbox-name "sandbox-home"))
-  (defun start ()
-   (cl:unless sandbox
-     (cl:setf sandbox (cl:make-package sandbox-name :use (cl:cons cl:*package* (cl:package-use-list cl:*package*))))
-     (cl:setf previous-package cl:*package*)
-     (cl:setf cl:*package* sandbox)))
+      (sandbox-name (gensym "sandbox-home")))
+
+  (defun start (&key (import-used-packages (cl:package-use-list cl:*package*)))
+    "Start Sandbox session. The Sandbox package will use all packages from
+the origin package and this package. If you do not wish for this to happen, either
+provide NIL as an argument to import-used-packages to not import anything except
+symbols from origin package, or provide your list of packages to import-used-packages;
+any packages you specify there will be used."
+    (or (cl:unless sandbox ; If we don't have sandbox session already running
+          (cl:setf sandbox ; Create sandbox package
+                   (cl:make-package
+                    sandbox-name ; And use outer package
+                    :use (cl:cons cl:*package*
+                                  import-used-packages)))
+          (cl:setf previous-package cl:*package*) ; Remember previous package
+          (cl:setf cl:*package* sandbox) ; Move into new package
+          'success) ; Return success if everything went ok.
+        'fail)) ; Return fail if we couldn't start sandbox.
+
   (defun exit ()
-   (cl:when sandbox
-     (cl:setf cl:*package* previous-package)
-     (cl:delete-package sandbox)
-     (cl:setf sandbox nil)
-     (cl:setf previous-package nil)
-     t))
-  (defun name-change (new-name)
-   (cl:assert (cl:typep new-name 'string))
-   (cl:setf sandbox-name new-name)))
+    "Close sandbox session, returning to the previous package
+and deleting the sandbox package.."
+    (or (cl:when sandbox ; If currently in sandbox
+          (cl:setf cl:*package* previous-package) ; Move to previous package
+          (cl:delete-package sandbox)
+          (cl:setf sandbox nil)
+          (cl:setf previous-package nil)
+          'success)
+        'fail))
+
