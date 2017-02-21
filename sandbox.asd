@@ -22,7 +22,7 @@
 ;; THE SOFTWARE.
 
 
-(asdf:defsystem #:sandbox
+(asdf:defsystem #:cl-sandbox
   :description "Utility package for creating safe experimental environment."
   :author "Mateusz Malisz <maliszmat@gmail.com>"
   :license "MIT"

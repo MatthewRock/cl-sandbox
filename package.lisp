@@ -24,6 +24,7 @@
 
 (defpackage #:sandbox
   (:use #:cl)
+  (:nicknames #:cl-sandbox)
   (:export start
            exit
            name-change
