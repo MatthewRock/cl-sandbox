@@ -26,7 +26,7 @@
   :description "Utility package for creating safe experimental environment."
   :author "Mateusz Malisz <maliszmat@gmail.com>"
   :license "MIT"
-  :version "0.0.3"
+  :version "0.0.4"
   :serial t
   :components ((:file "package")
                (:file "sandbox")))

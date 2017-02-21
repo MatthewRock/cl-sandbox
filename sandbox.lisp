@@ -28,12 +28,16 @@
       (previous-package cl:*package*)
       (sandbox-name (gensym "sandbox-home")))
 
-  (defun start (&key (import-used-packages (cl:package-use-list cl:*package*)))
+  (defun start (&key
+                  (import-used-packages (cl:package-use-list cl:*package*))
+                  (import-internal-symbols nil))
     "Start Sandbox session. The Sandbox package will use all packages from
 the origin package and this package. If you do not wish for this to happen, either
 provide NIL as an argument to import-used-packages to not import anything except
 symbols from origin package, or provide your list of packages to import-used-packages;
-any packages you specify there will be used."
+any packages you specify there will be used.
+By default, only exported symbols are imported. To import internal symbols from orign package,
+provide T to import-internal-symbols"
     (or (cl:unless sandbox ; If we don't have sandbox session already running
           (cl:setf sandbox ; Create sandbox package
                    (cl:make-package
@@ -42,6 +46,8 @@ any packages you specify there will be used."
                                   import-used-packages)))
           (cl:setf previous-package cl:*package*) ; Remember previous package
           (cl:setf cl:*package* sandbox) ; Move into new package
+          (cl:when import-internal-symbols
+            (cl:do-symbols (x previous-package) (import x))) ; Import all symbols, including internal.
           'success) ; Return success if everything went ok.
         'fail)) ; Return fail if we couldn't start sandbox.
 

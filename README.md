@@ -138,6 +138,29 @@ MY-PACKAGE> *my-result*
 
 Here we returned `*package*` to see if it is still there. As you can see, it is not. Moreover, variables defined in sandbox are also not present in the origin package(the package we came from; here, it is "MY-PACKAGE"), and we are back to the package that we started sandbox from.
 
+
+Importing internal symbols
+--------
+If you want, you can import internal symbols to the sandbox too. Here is an example of how to do so:
+
+``` common-lisp
+CL-USER> (defpackage :my-package
+           (:use :cl :drakma))
+#<PACKAGE "MY-PACKAGE">
+CL-USER> (in-package :my-package)
+#<PACKAGE "MY-PACKAGE">
+MY-PACKAGE> (defparameter *five* 5)
+*FIVE*
+MY-PACKAGE> *five*
+5
+MY-PACKAGE> (sandbox:start :import-internal-symbols t)
+SANDBOX::SUCCESS
+|sandbox-home594|> *five*
+5
+MY-PACKAGE> *five*
+5
+```
+
 Contact
 --------
 
