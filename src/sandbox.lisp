@@ -49,8 +49,8 @@ provide T to import-internal-symbols"
           (cl:setf cl:*package* sandbox) ; Move into new package
           (cl:when import-internal-symbols
             (cl:do-symbols (x previous-package) (import x))) ; Import all symbols, including internal.
-          'success) ; Return success if everything went ok.
-        'fail)) ; Return fail if we couldn't start sandbox.
+          :success) ; Return success if everything went ok.
+        :fail)) ; Return fail if we couldn't start sandbox.
 
   (defun exit ()
     "Close sandbox session, returning to the previous package and deleting the sandbox package.."
@@ -59,22 +59,22 @@ provide T to import-internal-symbols"
           (cl:delete-package sandbox)
           (cl:setf sandbox nil)
           (cl:setf previous-package nil)
-          'success)
-        'fail))
+          :success)
+        :fail))
 
   (defun pause ()
     "Pause sandbox session, leaving pacakge for future use."
     (or (cl:when (cl:and sandbox (cl:equal cl:*package* sandbox))
           (cl:setf cl:*package* previous-package)
-          'success)
-        'fail))
+          :success)
+        :fail))
 
   (defun resume ()
     "Resume paused sandbox session."
     (or (cl:when (cl:and sandbox (cl:not (cl:equal cl:*package* sandbox)))
           (cl:setf cl:*package* sandbox)
-          'success)
-        'fail))
+          :success)
+        :fail))
 
   (defun %change-name (new-name)
     "Change name of sandbox package to NEW-NAME."
