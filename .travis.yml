@@ -13,15 +13,8 @@ env:
     - LISP=clisp32
     - LISP=ecl
 
-# either use a local install.sh script or install it via curl. Feel
-# free to simplify this section in your own .travis.yml file.
 install:
-  - if [ -x ./install.sh ] && head -2 ./install.sh | grep '^# cl-travis' > /dev/null;
-    then
-      ./install.sh;
-    else
-      curl https://raw.githubusercontent.com/luismbo/cl-travis/master/install.sh | sh;
-    fi
+  ./install.sh;
 
 script:
   - cl -e '(or (and (ql:quickload :cl-sandbox) (asdf:test-system \'cl-sandbox)) (uiop:quit 1))'
