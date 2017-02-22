@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/MatthewRock/cl-sandbox.svg?branch=master)](https://travis-ci.org/MatthewRock/cl-sandbox)
+
 Overview
 --------
 
@@ -160,6 +162,53 @@ SANDBOX::SUCCESS
 MY-PACKAGE> *five*
 5
 ```
+
+Testing
+--------
+
+You can test the package the following way:
+
+``` common-lisp
+CL-USER> (ql:quickload :cl-sandbox)
+
+To load "cl-sandbox":
+  Load 1 ASDF system:
+    cl-sandbox
+; Loading "cl-sandbox"
+
+(:CL-SANDBOX)
+CL-USER> (asdf:test-system 'cl-sandbox)
+; compiling file "/home/malice/Programming/Lisp/cl-sandbox/t/sandbox-tests.lisp" (written 22 FEB 2017 04:24:42 AM):
+; compiling (DEFPACKAGE #:CL-SANDBOX/TESTS ...)
+; compiling (IN-PACKAGE #:CL-SANDBOX/TESTS)
+; compiling (DEFPARAMETER %%TESTING-VALUE%% ...)
+; compiling (DEFUN RUN-TESTS ...)
+; compiling (DEF-SUITE CL-SANDBOX-SUITE ...)
+; compiling (IN-SUITE CL-SANDBOX-SUITE)
+; compiling (TEST IN-AND-OUT ...)
+; compiling (TEST OUTER-VARS-AVAILABLE? ...)
+; compiling (TEST TEST-PAUSING ...)
+; compiling (TEST PAUSING-CORNER-CASES1 ...)
+; compiling (TEST PAUSING-CORNER-CASES2 ...)
+
+; /home/malice/.cache/common-lisp/sbcl-1.3.14-linux-x64/home/malice/Programming/Lisp/cl-sandbox/t/sandbox-tests-TMP.fasl written
+; compilation finished in 0:00:00.002
+
+Running test suite CL-SANDBOX-SUITE
+ Running test IN-AND-OUT ....
+ Running test OUTER-VARS-AVAILABLE? .....
+ Running test TEST-PAUSING .........
+ Running test PAUSING-CORNER-CASES1 ......
+ Running test PAUSING-CORNER-CASES2 .....
+ Did 29 checks.
+    Pass: 29 (100%)
+    Skip: 0 ( 0%)
+    Fail: 0 ( 0%)
+
+T
+```
+
+If tests failed on your machine and it looks like my fault, please, contact me or file an issue.
 
 Contact
 --------
