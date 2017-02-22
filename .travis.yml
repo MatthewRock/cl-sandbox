@@ -17,4 +17,4 @@ install:
   ./install.sh;
 
 script:
-  - cl -e '(or (and (ql:quickload :cl-sandbox) (asdf:test-system \'cl-sandbox)) (uiop:quit 1))'
+  - ros install
