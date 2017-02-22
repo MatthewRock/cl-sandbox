@@ -28,5 +28,19 @@
   :license "MIT"
   :version "0.0.4"
   :serial t
-  :components ((:file "package")
-               (:file "sandbox")))
+  :components ((:module
+                "src"
+                :components
+                ((:file "package")
+                 (:file "sandbox"))))
+  :in-order-to ((asdf:test-op
+                 (asdf:test-op #:cl-sandbox/tests))))
+
+(asdf:defsystem #:cl-sandbox/tests
+  :depends-on (#:cl-sandbox #:fiveam)
+  :components ((:module
+                "t"
+                :components
+                ((:file "sandbox-tests"))))
+  :perform (asdf:test-op (o s)
+                         (uiop:symbol-call :cl-sandbox/tests :run-tests)))

@@ -27,6 +27,5 @@
   (:nicknames #:cl-sandbox)
   (:export start
            exit
-           name-change
            pause
            resume))
