@@ -6,4 +6,4 @@ sh bootstrap
 ./configure
 make
 sudo make install
-ros setup
+ros install "$LISP"
