@@ -1,0 +1,11 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#| Common Lisp sandbox package for testing out stuff.
+exec ros -Q -- $0 "$@"
+|#
+
+(defun main (&rest argv)
+  (ql:quickload '(:cl-sandbox) :silent t)
+  (declare (ignorable argv))
+  (asdf:test-system 'cl-sandbox))
+;;; vim: set ft=lisp lisp:
