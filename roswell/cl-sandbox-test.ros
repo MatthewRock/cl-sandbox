@@ -5,7 +5,7 @@ exec ros -Q -- $0 "$@"
 |#
 
 (defun main (&rest argv)
-  (ql:quickload '(:cl-sandbox) :silent t)
   (declare (ignorable argv))
+  (ql:quickload '(:cl-sandbox) :silent t)
   (asdf:test-system 'cl-sandbox))
 ;;; vim: set ft=lisp lisp:
