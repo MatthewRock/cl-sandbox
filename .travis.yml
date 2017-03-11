@@ -31,6 +31,6 @@ cache:
 install:
   - curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
   - ros install fiveam
-  - export MYDIR="$PWD"; (cd ~/.roswell/local-projects/ && ln -s "$MYDIR" cl-sandbox)
+  - export MYDIR="$PWD"; (cd ~/.roswell/quicklisp/local-projects/ && ln -s "$MYDIR" cl-sandbox)
 script:
   - ./roswell/cl-sandbox-test.ros
