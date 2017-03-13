@@ -78,8 +78,10 @@ provide T to import-internal-symbols"
 
   (defun %change-name (new-name)
     "Change name of sandbox package to NEW-NAME."
+    (declare (ignorable new-name))
     (error 'function-not-implemented)
-    (cl:assert (cl:typep new-name 'string))
-    (cl:setf sandbox-name new-name)
-    (cl:when sandbox
-      (cl:rename-package sandbox sandbox-name))))
+    ;; (cl:assert (cl:typep new-name 'string))
+    ;; (cl:setf sandbox-name new-name)
+    ;; (cl:when sandbox
+    ;;   (cl:rename-package sandbox sandbox-name))
+    ))
