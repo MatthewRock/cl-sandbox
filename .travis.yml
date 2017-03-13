@@ -33,4 +33,4 @@ install:
   - ros install fiveam
   - ros install MatthewRock/cl-sandbox/travis-installation
 script:
-  - ros -s cl-sandbox -e "(progn (require 'uiop) (asdf:test-system 'cl-sandbox))"
+  - ./roswell/cl-sandbox-test.ros
