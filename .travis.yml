@@ -1,27 +1,37 @@
 language: lisp
-sudo: required
+sudo: false
 
 env:
+
+  global:
+    - PATH=~/.roswell/bin:$PATH
+    - ROSWELL_INSTALL_DIR=$HOME/.roswell
+
   matrix:
-    - LISP=abcl
+    - LISP=abcl-bin
     - LISP=allegro
     - LISP=sbcl
-    - LISP=sbcl32
-    - LISP=ccl
-    - LISP=ccl32
-    - LISP=clisp
-    - LISP=clisp32
+    - LISP=cmu-bin
+    - LISP=ccl-bin
+    # Clisp turned off due to problems with UIOP.
+    #- LISP=clisp
     - LISP=ecl
 
-# either use a local install.sh script or install it via curl. Feel
-# free to simplify this section in your own .travis.yml file.
-install:
-  - if [ -x ./install.sh ] && head -2 ./install.sh | grep '^# cl-travis' > /dev/null;
-    then
-      ./install.sh;
-    else
-      curl https://raw.githubusercontent.com/luismbo/cl-travis/master/install.sh | sh;
-    fi
+addons:
+  apt:
+    packages:
+      - libc6-i386
+      - openjdk-7-jre
 
+cache:
+  directories:
+    - $HOME/.roswell
+    - $HOME/.config/common-lisp
+
+
+install:
+  - curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
+  - ros install fiveam
+  - ros install MatthewRock/cl-sandbox/
 script:
-  - cl -e '(or (and (ql:quickload :cl-sandbox) (asdf:test-system \'cl-sandbox)) (uiop:quit 1))'
+  - ./roswell/cl-sandbox-test.ros
