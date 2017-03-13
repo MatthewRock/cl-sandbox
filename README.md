@@ -14,6 +14,11 @@ License
 Sandobx is licensed with MIT license, which means that you can do pretty much everything with it.
 
 
+Compatibility
+--------
+
+I am trying to build the library on as many compilers that I can. I have encountered some problems with UIOP on CLISP; therefore, CLISP is not supported.
+
 Example
 --------
 

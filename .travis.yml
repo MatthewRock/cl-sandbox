@@ -13,7 +13,8 @@ env:
     - LISP=sbcl
     - LISP=cmu-bin
     - LISP=ccl-bin
-    - LISP=clisp
+    # Clisp turned off due to problems with UIOP.
+    #- LISP=clisp
     - LISP=ecl
 
 addons:
@@ -31,6 +32,6 @@ cache:
 install:
   - curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
   - ros install fiveam
-  - ros install MatthewRock/cl-sandbox/travis-installation
+  - ros install MatthewRock/cl-sandbox/
 script:
   - ./roswell/cl-sandbox-test.ros
