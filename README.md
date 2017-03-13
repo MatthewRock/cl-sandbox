@@ -218,4 +218,4 @@ If tests failed on your machine and it looks like my fault, please, contact me o
 Contact
 --------
 
-Feel free to contact me by my e-mail (which can be found in sandbox.asd), or by creating an issue.
+Feel free to contact me by my e-mail (which can be found in cl-sandbox.asd), or by creating an issue.
