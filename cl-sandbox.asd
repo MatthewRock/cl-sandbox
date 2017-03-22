@@ -38,6 +38,8 @@
 
 (asdf:defsystem #:cl-sandbox/tests
   :depends-on (#:cl-sandbox #:fiveam)
+  :author "Mateusz Malisz <maliszmat@gmail.com>"
+  :license "MIT"
   :components ((:module
                 "t"
                 :components
