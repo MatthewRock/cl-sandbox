@@ -32,7 +32,7 @@ CL-USER> (in-package :my-package)
 #<PACKAGE "MY-PACKAGE">
 ```
 
-Now you want to test something (e.g. querying google translate) and use helper variables, but you don't want to pollute your package. Therefore, you use sandbox package(WARNING: Currently, sandbox is not inside quicklisp; therefore, you would need to add its path where either quicklisp or asdf could find it To find out how to do so, see [this post](http://lispyprogrammer.blogspot.com/2015/11/adding-your-directory-to-quicklisp.html)):
+Now you want to test something (e.g. querying google translate) and use helper variables, but you don't want to pollute your package. Therefore, you use sandbox package:
 
 ``` common-lisp
 MY-PACKAGE> (ql:quickload :sandbox)
