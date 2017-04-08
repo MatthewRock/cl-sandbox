@@ -32,6 +32,6 @@ cache:
 install:
   - curl -L https://raw.githubusercontent.com/roswell/roswell/release/scripts/install-for-ci.sh | sh
   - ros install fiveam
-  - ros install MatthewRock/cl-sandbox
+  - ros install cl-sandbox
 script:
   - ./roswell/cl-sandbox-test.ros
