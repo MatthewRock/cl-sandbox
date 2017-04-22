@@ -219,3 +219,8 @@ Contact
 --------
 
 Feel free to contact me by my e-mail (which can be found in cl-sandbox.asd), or by creating an issue.
+
+Author
+--------
+
+This package has been created by Mateusz Malisz.
