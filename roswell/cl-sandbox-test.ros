@@ -3,8 +3,8 @@
 #| Common Lisp sandbox package for testing out stuff.
 exec ros -Q -- $0 "$@"
 |#
-
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (ql:quickload '(:cl-sandbox/tests) :silent t))
 (defun main (&rest argv)
-  (ql:quickload '(:cl-sandbox) :silent t)
-  (asdf:test-system 'cl-sandbox))
+  (cl-sandbox/tests:run-tests))
 ;;; vim: set ft=lisp lisp:
