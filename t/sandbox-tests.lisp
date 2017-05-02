@@ -70,7 +70,7 @@
   ;; Sanity check
   (is (equal cl:*package* (find-package :cl-sandbox/tests)))
   ;; Get in
-  (is (eql :success (sandbox:start)))
+  (is-false (eql :success (sandbox:start)))
   (is (eql :success (sandbox:pause)))
   ;; Can't pause when already paused
   (is (eql :fail (sandbox:pause)))
