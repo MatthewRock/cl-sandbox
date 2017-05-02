@@ -5,6 +5,7 @@ exec ros -Q -- $0 "$@"
 |#
 (eval-when (:compile-toplevel :load-toplevel :execute)
   (ql:quickload '(:cl-sandbox/tests) :silent t))
+
 (defun main (&rest argv)
-  (cl-sandbox/tests:run-tests))
+  (or (cl-sandbox/tests:run-tests) (uiop:quit 1)))
 ;;; vim: set ft=lisp lisp:
