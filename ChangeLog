@@ -1,4 +1,0 @@
-2017-02-22    MatthewRock <gwmaniak@gmail.com>
-
-	* ChangeLog: ChangeLog created.
-	* README.md: Added instructions how to test package, added Travis build status badge.

@@ -35,18 +35,19 @@ CL-USER> (in-package :my-package)
 Now you want to test something (e.g. querying google translate) and use helper variables, but you don't want to pollute your package. Therefore, you use sandbox package:
 
 ``` common-lisp
-MY-PACKAGE> (ql:quickload :sandbox)
-To load "sandbox":
+MY-PACKAGE> (ql:quickload :cl-sandbox)
+To load "cl-sandbox":
   Load 1 ASDF system:
-    sandbox
-; Loading "sandbox"
-(:SANDBOX)
+    cl-sandbox
+; Loading "cl-sandbox"
+(:CL-SANDBOX)
 MY-PACKAGE> (sandbox:start)
 SANDBOX::SUCCESS
 |sandbox-home640|>
 ```
+Note that the *system*'s name is **cl-sandbox**, but *package* can use both **cl-sandbox** and **sandbox**.
 
-This will create a unique and fresh package for sandbox. The package will use all the symbols exported from the previous package(here it would be "MY-PACKAGE"), as well as symbols exported by all packages used by your package. If you do not wish to import these packages, use keyword argument `import-used-packages`:
+The above code creates a unique and fresh package for sandbox. The package uses all the symbols exported from the previous package (here it would be "MY-PACKAGE"), as well as symbols exported by all packages used by your package. If you do not wish to import these packages, use keyword argument `import-used-packages`:
 
 ``` common-lisp
 MY-PACKAGE> (sandbox:start :import-used-packages nil)
@@ -64,7 +65,7 @@ SANDBOX::SUCCESS
 NIL
 ```
 
-Now let's go back to our example. Since our package "MY-PACKAGE" used drakma, we would like to see if we can access its external symbols:
+Now let's head back to the http example. Since our package "MY-PACKAGE" used drakma, we would like to see if we can access its external symbols:
 
 ``` common-lisp
 |sandbox-home640|> *drakma-version*
